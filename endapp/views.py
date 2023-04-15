@@ -57,6 +57,7 @@ def hrreg(request):
         if(i[0]==0):
             s="insert into tbl_hrreg(name,address,phone,email,password) values('"+str(name)+"','"+str(address)+"','"+str(phone)+"','"+str(email)+"','"+str(password)+"')"
             c.execute(s)
+            k=
      
                   
 
