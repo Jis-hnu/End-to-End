@@ -245,7 +245,35 @@ def hrpayment(request):
     selectpay=selectpayment(sid)
 
     return render(request,"hrpayment.html",{"selectpayment":selectpay})
-
+def reqvehcdriv(request):
+    c.execute("select tbl_vehicle.vehid,tbl_vehicle.vehiclename,tbl_vehicle.regno,tbl_category.catname from tbl_vehicle,tbl_category where tbl_vehicle.catid=tbl_category.catid")
+    j=c.fetchall() 
+    print(j)
+    return render(request,"requestvehicledriv.html",{"j":j})
+def requestsenddriv(request):
+    sid=request.session['id']
+    id=request.GET.get("id")
+    s="insert into tbl_driver_request(drid,vehid,status) values('"+str(sid)+"','"+str(id)+"','0')"
+    c.execute(s)
+    db.commit()
+    return HttpResponseRedirect("/reqvehcdriv")
+def viewrequestdriv(request):
+    c.execute("select login.username, tbl_vehicle.vehiclename, tbl_vehicle.regno, tbl_category.catname,login.id from login, tbl_vehicle, tbl_category, tbl_driver_request where tbl_driver_request.drid = login.id and tbl_vehicle.vehid = tbl_driver_request.vehid and  tbl_vehicle.catid = tbl_category.catid and  tbl_driver_request.status='0'")
+    j=c.fetchall() 
+    print(j)
+    return render(request,"viewrequestdriv.html",{"j":j})
+def requestacceptdriv(request):
+    id=request.GET.get("id")
+    s="update tbl_driver_request set status='1' where drid='"+str(id)+"'"
+    c.execute(s)
+    db.commit()
+    return HttpResponseRedirect("/viewrequestdriv")
+def viewwork(request):
+    sid=request.session['id']
+    c.execute("SELECT * FROM tbl_work  where did='"+str(sid)+"' and status='Alloted'")
+    j=c.fetchall() 
+    print(j)
+    return render(request,"viewwork.html",{"j":j})
 
 
 
