@@ -41,6 +41,12 @@ def hrhome(request):
     return render(request,"hrhome.html")
 def driverhome(request):
     return render(request,"driverhome.html")
+def hrreg(request):
+    s=""
+    k=""
+    
+    if(request.POST):
+        name=request.POST.get("name")
     
             
      
