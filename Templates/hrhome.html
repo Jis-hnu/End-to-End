@@ -1,0 +1,146 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Welcome Admin Home</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+  <style>
+  body{
+      background-image:url("../static/images/bg1.jpg");
+  }
+  
+  
+  </style>
+</head>
+<body>
+   
+
+<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" >End to End</a>
+    </div>
+    <ul class="nav navbar-nav">
+      <li class="active"><a href="{% url 'hrhome' %}">Home</a></li>
+      <li><a href="{% url 'workallocation' %}"> Work Allocation </a></li>
+      <li><a href="{% url 'reqvehchr' %}"> Our Requests</a></li>
+      <li><a href="{% url 'viewrequestdriv' %}"> Drivers Requests</a></li>
+    
+      
+      <li><a href="{% url 'servicedetails' %}"> Work Notifications</a></li>
+      <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Payment<span class="caret"></span></a>
+        <ul class="dropdown-menu">
+          <li><a href="{% url 'hrreg' %}">Drivers Payments</a></li>
+          <li><a href="{% url 'hrpayment' %}">My payment</a></li>
+          
+        </ul>
+      </li>
+     
+      <li><a href="{% url 'servicedetails' %}"> Add Feedback</a></li>
+    
+      <li><a href="{% url 'index' %}">Logout</a></li>
+    
+    </ul>
+  </div>
+</nav>
+
+
+</body>
+
+
+<!DOCTYPE html>
+<html lang="zxx">
+
+<head>
+    <title>Corp Group Corporate Category Bootstrap Responsive Web Template | Home :: W3layouts</title>
+    <!-- Meta tag Keywords -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="UTF-8" />
+    <meta name="keywords" content="Corp Group Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template, Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyEricsson, Motorola web design" />
+    <script>
+        addEventListener("load", function() {
+            setTimeout(hideURLbar, 0);
+        }, false);
+
+        function hideURLbar() {
+            window.scrollTo(0, 1);
+        }
+
+    </script>
+    <!-- //Meta tag Keywords -->
+
+    <!-- Custom-Files -->
+    <link rel="stylesheet" href="static/hr/css/bootstrap.css">
+    <!-- Bootstrap-Core-CSS -->
+    <link rel="stylesheet" href="static/hr/css/style.css" type="text/css" media="all" />
+    <!-- Style-CSS -->
+    <!-- font-awesome-icons -->
+    <link href="static/hr/css/font-awesome.css" rel="stylesheet">
+    <!-- //font-awesome-icons -->
+    <!-- /Fonts -->
+   <link href="//fonts.googleapis.com/css?family=Raleway:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,800" rel="stylesheet">
+    <!-- //Fonts -->
+
+</head>
+
+    <!-- mian-content -->
+    <div class="banner-content" id="home">
+        <!-- header -->
+        <header class="header">
+            <div class="container-fluid px-lg-5">
+                <!-- nav -->
+                <nav class="py-4">
+                   
+
+                    <label for="drop" class="toggle">Menu</label>
+                    <input type="checkbox" id="drop" />
+                    <ul class="menu mt-2">
+               
+                      <li class="active"><a href="{% url 'hrhome' %}">Home</a></li>
+      <li><a href="{% url 'workallocation' %}"> Work Allocation </a></li>
+      <li><a href="{% url 'reqvehchr' %}"> Our Requests</a></li>
+      <li><a href="{% url 'viewrequestdriv' %}"> Drivers Requests</a></li>
+      <!-- <li><a href="{% url 'servicedetails' %}"> Work Notifications</a></li> -->
+      <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Payment<span class="caret"></span></a>
+        <ul class="dropdown-menu">
+          <li><a href="{% url 'viewpayment' %}">Drivers Payments</a></li>
+         
+          
+        </ul>
+      </li>
+      <li><a href="{% url 'servicedetails' %}"> Add Feedback</a></li>
+    
+      <li><a href="{% url 'index' %}">Logout</a></li>
+    </ul>
+                    
+                    
+                 
+                </nav>
+                <!-- //nav -->
+            </div>
+        </header>
+        <!-- //header -->
+
+        <!--/banner-->
+        
+        <!--// banner-inner -->
+    </div>
+    <!-- //header -->
+	 <!-- banner-bottom-wthree -->
+
+    <!-- //footer -->
+
+    <!-- copyright -->
+    <div class="cpy-right text-center py-3">
+        <p class="">© 2019 Corp Group. All rights reserved | Design by
+            <a href="http://w3layouts.com"> W3layouts.</a>
+        </p>
+    </div>
+    <!-- //copyright -->
+
+</body>
+
+</html>

@@ -1,0 +1,105 @@
+<html lang="zxx">
+
+<head>
+    <title>Corp Group Corporate Category Bootstrap Responsive Web Template | About :: W3layouts</title>
+    <!-- Meta tag Keywords -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="UTF-8" />
+    <meta name="keywords" content="Corp Group Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template, Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyEricsson, Motorola web design" />
+    <script>
+        addEventListener("load", function() {
+            setTimeout(hideURLbar, 0);
+        }, false);
+
+        function hideURLbar() {
+            window.scrollTo(0, 1);
+        }
+
+    </script>
+    <!-- //Meta tag Keywords -->
+
+    <!-- Custom-Files -->
+    <link rel="stylesheet" href="static/admin/css/bootstrap.css">
+    <!-- Bootstrap-Core-CSS -->
+    <link rel="stylesheet" href="static/admin/css/style.css" type="text/css" media="all" />
+    <!-- Style-CSS -->
+    <!-- font-awesome-icons -->
+    <link href="static/admin/css/font-awesome.css" rel="stylesheet">
+    <!-- //font-awesome-icons -->
+    <!-- /Fonts -->
+    <link href="//fonts.googleapis.com/css?family=Raleway:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,800" rel="stylesheet">
+    <!-- //Fonts -->
+</head>
+
+<body>
+    <!-- mian-content -->
+    <!-- //header -->
+    <div class="banner-content inner" id="home">
+        <!-- header -->
+      <header class="header">
+            <div class="container-fluid px-lg-5">
+                <!-- nav -->
+                <nav class="py-4">
+                   
+
+                  <label for="drop" class="toggle">Menu</label>
+                  <input type="checkbox" id="drop" />
+                  <ul class="menu mt-2">
+                    <li class="active"><a href="{% url 'adminhome' %}">Home</a></li>
+                    <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Register  Employee<span class="caret"></span></a>
+                      <ul class="dropdown-menu">
+                        <li><a href="{% url 'hrreg' %}">Hr </a></li>
+                        <li><a href="{% url 'driverreg' %}">Driver</a></li>
+                      
+                    </ul>
+                  </li>
+                  <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Add<span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                      <li><a href="{% url 'addcategory' %}">Category </a></li>
+                      <li><a href="{% url 'addvehicle' %}">vehicle</a></li>
+                      <li><a href="{% url 'addamount' %}">Amount For vehicle</a></li>
+                      
+                    </ul>
+                  </li>
+                  <li><a href="{% url 'servicedetails' %}">Service Details</a></li>
+                  <li><a href="{% url 'insurancedetails' %}">Insurance Details</a></li>
+                  <li><a href="{% url 'viewrequestshr' %}">View Requests</a></li>
+                  <li><a href="{% url 'viewfeedback' %}">View Feedback</a></li>
+                  <li><a href="{% url 'index' %}">Logout</a></li>
+                
+                </ul>
+                      
+               
+              </nav>
+                <!-- //nav -->
+            </div>
+        </header>
+    </div>
+        <br><br><br><br>
+</body>
+<div class="col-lg-6 about-right"  >
+    <div  align="center  " style="margin-left: 300px">
+                    <h3 style="color:orange">Add Category  Here............</h3>
+                    
+                    <form method="POST"  >
+                        {% csrf_token %}
+                        <table  align="center">
+                            <tr>
+                                
+                                <td> category Name</td>
+                                <td><input type="text" name="catname" class="form-control" required=""  style="height:30px"></td><br>
+                            </tr>
+                           
+                            <tr>
+                                
+                                <td colspan="3" align="center"><input type="submit" name="submit" value="Add" class="btn btn-primary"></td>
+                                
+                            </tr>
+                        </table>
+                    </form>
+    </div>
+                   
+                    </div>
+</body>
+</html>
+</html>

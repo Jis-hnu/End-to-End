@@ -1,0 +1,108 @@
+<html lang="zxx">
+
+<head>
+    <title>Corp Group Corporate Category Bootstrap Responsive Web Template | About :: W3layouts</title>
+    <!-- Meta tag Keywords -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="UTF-8" />
+    <meta name="keywords" content="Corp Group Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template, Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyEricsson, Motorola web design" />
+    <script>
+        addEventListener("load", function() {
+            setTimeout(hideURLbar, 0);
+        }, false);
+
+        function hideURLbar() {
+            window.scrollTo(0, 1);
+        }
+
+    </script>
+    <!-- //Meta tag Keywords -->
+
+    <!-- Custom-Files -->
+    <link rel="stylesheet" href="static/hr/css/bootstrap.css">
+    <!-- Bootstrap-Core-CSS -->
+    <link rel="stylesheet" href="static/hr/css/style.css" type="text/css" media="all" />
+    <!-- Style-CSS -->
+    <!-- font-awesome-icons -->
+    <link href="static/hr/css/font-awesome.css" rel="stylesheet">
+    <!-- //font-awesome-icons -->
+    <!-- /Fonts -->
+    <link href="//fonts.googleapis.com/css?family=Raleway:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,800" rel="stylesheet">
+    <!-- //Fonts -->
+</head>
+
+<body>
+    <!-- mian-content -->
+    <!-- //header -->
+    <div class="banner-content inner" id="home">
+        <!-- header -->
+      <header class="header">
+            <div class="container-fluid px-lg-5">
+                <!-- nav -->
+                <nav class="py-4">
+                   
+
+                    <label for="drop" class="toggle">Menu</label>
+                    <input type="checkbox" id="drop" />
+                    <ul class="menu mt-2">
+               
+                      <li class="active"><a href="{% url 'hrhome' %}">Home</a></li>
+      <li><a href="{% url 'workallocation' %}"> Work Allocation </a></li>
+      <li><a href="{% url 'reqvehchr' %}"> Our Requests</a></li>
+      <li><a href="{% url 'viewrequestdriv' %}"> Drivers Requests</a></li>
+      
+      <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Payment<span class="caret"></span></a>
+        <ul class="dropdown-menu">
+          <li><a href="{% url 'viewpayment' %}">Drivers Payments</a></li>
+          
+          
+        </ul>
+      </li>
+      <li><a href="{% url 'feedback' %}"> Add Feedback</a></li>
+    
+      <li><a href="{% url 'index' %}">Logout</a></li>
+    </ul>
+                    
+                    
+                 
+                </nav>
+                <!-- //nav -->
+            </div>
+        </header>
+    </div>
+        <br><br><br><br>
+</body>
+</html>
+
+
+<head>
+        <style>
+        h2{
+            color:red;
+        }
+        
+        
+        </style>
+        
+        
+        </head>
+        <h2 align="center"><b>Vehicle Requests..............</b></h2>
+        <BR><BR>
+        
+        <table border="3" style="color:black" align="center">
+         <tr><th>Username</th>
+        <th>Vehicle Name</th>
+        <th>Register Number</th>
+        <th>Category Name</th></tr>
+        {% for i in j%}
+        <tr><td>{{i.0}}</td><td>{{i.1}}</td><td>{{i.2}}</td><td>{{i.3}}</td>
+        <td><a href="/requestacceptdriv?id={{i.4}}">Accept</a></td></tr>
+        {% endfor %}
+        
+        
+        
+        
+        
+        
+        
+        </table>

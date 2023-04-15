@@ -1,0 +1,54 @@
+<div class="col-lg-6 about-right"  >
+        <div  align="center  " style="margin-left: 300px">
+                        <h3 style="color:white">Payment............</h3>
+                        
+                        <form method="POST"  >
+                                {% csrf_token %}
+                            <table  align="center">
+                                {% for i in selectpayment %}
+                                <tr>
+                                    
+                                    <td>User Name</td>
+                                    <td><input type="text" name="name" value="{{i.0}}" readonly="" class="form-control" required=""  style="height:30px"></td><br>
+                                </tr>
+                                <tr>
+                                    
+                                    <td>  Category</td>
+                                    <td align="center"><input type="text" name="address" class="form-control" required="" style="height:45px"></td>
+                                </tr>
+                                <tr>
+                                    
+                                    <td>Vehicle Name</td>
+                                    <td><input type="text" name="phone" class="form-control" required=""></td>
+                                </tr>
+                                
+                                <tr>
+                                    
+                                    <td>Register Number</td>
+                                    <td><input type="email" name="email" class="form-control" required=""></td>
+                                </tr>
+                                <tr>
+                                    
+                                    <td>Amount</td>
+                                    <td><input type="password" name="password" class="form-control" required=""></td>
+                                </tr>
+                                <tr>
+                                    
+                                    <td colspan="3" align="center"><input type="submit" name="submit" value="Register" class="btn btn-primary"></td>
+                                    
+                                </tr>
+                                {% endfor %}
+                            </table>
+                        </form>
+        </div>
+        <table border="2" align="center">
+                <tr><th>Username</th>
+               <th>Vehicle Name</th>
+               <th>Register Number</th>
+               <th>Category Name</th></tr>
+               {% for i in j%}
+               <tr><td>{{i.0}}</td><td>{{i.1}}</td><td>{{i.2}}</td><td>{{i.3}}</td>
+               <td><a href="/requestaccept?id={{i.4}}">Accept</a></td></tr>
+               {% endfor %}
+               
+        </table>       
