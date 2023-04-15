@@ -87,6 +87,21 @@ def driverreg(request):
             c.execute(s)
             k="insert into login(user_type,username,password) values('DRIVER','"+str(email)+"','"+str(password)+"')"
             c.execute(k)
+            db.commit()
+
+    return render(request,"driverreg.html")
+def addcategory(request):
+    s=""
+    if(request.POST):
+        catname=request.POST.get("catname")
+        s="select count(*) count from tbl_category where catname='"+str(catname)+"'"
+        c.execute(s)
+        i=c.fetchone()
+        if(i[0]==0):
+            s="insert into tbl_category(catname)values('"+str(catname)+"')"
+            c.execute(s)
+            db.commit()
+    return render(request,"addcategory.html")
 
 
      
