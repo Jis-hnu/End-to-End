@@ -162,6 +162,23 @@ def servicedetails(request):
     vehiclename=selectvehicle()
     regno=selectamount()
     return render(request,"service.html",{"n":n,"vehiclename":vehiclename,"regno":regno})
+def insurancedetails(request):
+    n=""
+    if(request.POST):
+        today=datetime.datetime.now()
+       
+        regno=request.POST.get("regno")
+        n="select count(*) as count from tbl_insurance where regno='"+str(regno)+"'"
+        c.execute(n)
+        i=c.fetchone()
+        if(i[0]==0):
+            n="insert into tbl_insurance(regno,exdate) values('"+str(regno)+"','"+str(today)+"')"
+            c.execute(n)
+            db.commit()
+    vehiclename=selectvehicle()
+    regno=selectamount()
+    return render(request,"insurance.html",{"n":n,"regno":regno})
+
 
 
 
