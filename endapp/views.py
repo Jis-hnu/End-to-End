@@ -47,8 +47,16 @@ def hrreg(request):
     
     if(request.POST):
         name=request.POST.get("name")
-    
-            
+        address=request.POST.get("address")
+        phone=request.POST.get("phone")
+        email=request.POST.get("email")
+        password=request.POST.get("password")
+        s="select count(*) from tbl_hrreg where name='"+str(name)+"'"
+        c.execute(s)
+        i=c.fetchone()
+        if(i[0]==0):
+            s="insert into tbl_hrreg(name,address,phone,email,password) values('"+str(name)+"','"+str(address)+"','"+str(phone)+"','"+str(email)+"','"+str(password)+"')"
+            c.execute(s)
      
                   
 
