@@ -204,7 +204,47 @@ def reqvehchr(request):
     j=c.fetchall() 
     print(j)
     return render(request,"requestvehiclehr.html",{"j":j})
+def choosevehicles(request):   
+    data = ""
+    reqdate=request.POST.get("reqdate")
+    retdate=request.POST.get("retdate")
+    catid=request.POST.get("catid")
+    c.execute("select * from tbl_vehicle where catid='"+str(catid)+"' and vehid NOT IN (select vehid from tbl_hr_request where (reqdate BETWEEN '"+str(reqdate)+"' and  '"+str(retdate)+"') or (retdate BETWEEN  '"+str(reqdate)+"' and '"+str(retdate)+"'))")
+    j=c.fetchall() 
+    print(j)
+   
+    return render(request,"viewchoosevehicles.html",{"j":j,"catname":selectcategory})
+def requestsend(request):
+    sid=request.session['id']
+    id=request.GET.get("id")
+    s="insert into tbl_hr_request(hrid,vehid,status) values('"+str(sid)+"','"+str(id)+"','0')"
+    c.execute(s)
+    db.commit()
+    return HttpResponseRedirect("/reqvehchr")
+def viewrequesthr(request):
+    c.execute("select login.username, tbl_vehicle.vehiclename, tbl_vehicle.regno, tbl_category.catname,login.id from login, tbl_vehicle, tbl_category, tbl_hr_request where tbl_hr_request.hrid = login.id and tbl_vehicle.vehid = tbl_hr_request.vehid and  tbl_vehicle.catid = tbl_category.catid and  tbl_hr_request.status='0'")
+    
+    j=c.fetchall() 
+    print(j)
+    return render(request,"viewrequestdriv.html",{"j":j})
+def requestaccept(request):
+    id=request.GET.get("id")
+    s="update tbl_hr_request set status='1' where drid='"+str(id)+"'"
+    c.execute(s)
+    db.commit()
+    return HttpResponseRedirect("/viewrequesthr")
+def selectpayment(sid):
+   
+    c.execute("select login.username, tbl_vehicle.vehiclename, tbl_vehicle.regno,tbl_amount.amount,tbl_category.catname,login.id from login, tbl_vehicle, tbl_category,tbl_amount,tbl_hr_request where tbl_hr_request.hrid = login.id and tbl_vehicle.vehid = tbl_hr_request.vehid and  tbl_vehicle.catid = tbl_category.catid and tbl_hr_request.status='1' and tbl_hr_request.hrid='"+str(sid)+"'")
+    data=c.fetchall() 
+    return data
+def hrpayment(request):
+    sid=request.session['id']
+    selectpay=""
+    
+    selectpay=selectpayment(sid)
 
+    return render(request,"hrpayment.html",{"selectpayment":selectpay})
 
 
 
