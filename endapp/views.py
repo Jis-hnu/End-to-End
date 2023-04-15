@@ -123,6 +123,21 @@ def addvehicle(request):
             db.commit()
     catname=selectcategory()
     return render(request,"addvehicle.html",{"m":m,"catname":catname})
+def addamount(request):
+    n=""
+    if(request.POST):
+        amount=request.POST.get("amount")
+        vehiclename=request.POST.get("vehiclename")
+        n="select count(*) count from tbl_amount where amount='"+str(amount)+"'"
+        c.execute(n)
+        i=c.fetchone()
+        if(i[0]==0):
+            n="insert into tbl_amount(vehiclename,amount) values('"+str(vehiclename)+"','"+str(amount)+"')"
+            c.execute(n)
+            db.commit()
+    vehiclename=selectvehicle()       
+    return render(request,"addamount.html",{"n":n,"vehiclename":vehiclename})
+
 
 
      
