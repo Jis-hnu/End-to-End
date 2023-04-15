@@ -36,6 +36,11 @@ def login(request):
             
     return render(request,"login.html",{"msg":msg})
 def adminhome(request):
+    return render(request,"adminhome.html")
+def hrhome(request):
+    return render(request,"hrhome.html")
+def driverhome(request):
+    return render(request,"driverhome.html")
     
             
      
