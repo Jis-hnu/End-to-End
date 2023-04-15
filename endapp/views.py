@@ -19,7 +19,13 @@ def login(request):
         s="select count(*) from login where username='"+str(uname)+"' and password='"+str(pwd)+"'" 
         c.execute(s)
         y=c.fetchone()
-        request.session['id']=y[0]
+        if(y[0]==0):
+            msg="user does not  exist"
+        else:
+            s="select * from login where username='"+str(uname)+"' and password='"+str(pwd)+"'"
+            c.execute(s)
+            y=c.fetchone()
+            request.session['id']=y[0]
                   
 
   
