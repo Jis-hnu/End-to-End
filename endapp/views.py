@@ -103,6 +103,27 @@ def addcategory(request):
             db.commit()
     return render(request,"addcategory.html")
 
+def selectcategory():
+    data = ""
+    c.execute("select * from tbl_category")
+    data=c.fetchall() 
+    return data
+def addvehicle(request):
+    m=""
+    if(request.POST):
+        vehiclename=request.POST.get("vehiclename")
+        catid=request.POST.get("catid")
+        regno=request.POST.get("regno")
+        m="select count(*) count from tbl_vehicle where regno='"+str(regno)+"'"
+        c.execute(m)
+        i=c.fetchone()
+        if(i[0]==0):
+            m="insert into tbl_vehicle(catid,vehiclename,regno) values('"+str(catid)+"','"+str(vehiclename)+"','"+str(regno)+"')"
+            c.execute(m)
+            db.commit()
+    catname=selectcategory()
+    return render(request,"addvehicle.html",{"m":m,"catname":catname})
+
 
      
                   
