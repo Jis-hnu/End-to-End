@@ -34,6 +34,10 @@ def login(request):
             elif y[1]=='DRIVER':
                 return HttpResponseRedirect("/driverhome")
             
+    return render(request,"login.html",{"msg":msg})
+def adminhome(request):
+    
+            
      
                   
 
