@@ -69,6 +69,26 @@ def loadhrreg():
     c.execute("select * from tbl_category")
     j=c.fetchall() 
     return j
+
+def driverreg(request):
+    s=""
+    k=""
+    if(request.POST):
+        name=request.POST.get("name")
+        address=request.POST.get("address")
+        phone=request.POST.get("phone")
+        email=request.POST.get("email")
+        password=request.POST.get("password")
+        s="select count(*)  from tbl_driverreg  where name='"+str(name)+"'"
+        c.execute(s)
+        i=c.fetchone()
+        if(i[0]==0):
+            s="insert into tbl_driverreg(name,address,phone,email,password) values('"+str(name)+"','"+str(address)+"','"+str(phone)+"','"+str(email)+"','"+str(password)+"')"
+            c.execute(s)
+            k="insert into login(user_type,username,password) values('DRIVER','"+str(email)+"','"+str(password)+"')"
+            c.execute(k)
+
+
      
                   
 
