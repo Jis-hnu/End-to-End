@@ -178,7 +178,12 @@ def insurancedetails(request):
     vehiclename=selectvehicle()
     regno=selectamount()
     return render(request,"insurance.html",{"n":n,"regno":regno})
-
+def viewrequests(request):
+    return render(request,"insurance.html")
+def selectdriver():
+    c.execute("select reg.name,log.id from tbl_driverreg  reg join login  log where log.user_type='DRIVER' and log.username=reg.email")
+    data=c.fetchall() 
+    return data
 
 
 
