@@ -57,7 +57,18 @@ def hrreg(request):
         if(i[0]==0):
             s="insert into tbl_hrreg(name,address,phone,email,password) values('"+str(name)+"','"+str(address)+"','"+str(phone)+"','"+str(email)+"','"+str(password)+"')"
             c.execute(s)
-            k=
+            k="insert into login(user_type,username,password) values('HR','"+str(email)+"','"+str(password)+"')"
+            c.execute(k)
+            db.commit()
+    loadhr=loadhrreg()
+            
+
+    return render(request,"hrreg.html",{"loadhr":loadhrreg})
+def loadhrreg():
+    j= ""
+    c.execute("select * from tbl_category")
+    j=c.fetchall() 
+    return j
      
                   
 
