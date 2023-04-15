@@ -184,6 +184,28 @@ def selectdriver():
     c.execute("select reg.name,log.id from tbl_driverreg  reg join login  log where log.user_type='DRIVER' and log.username=reg.email")
     data=c.fetchall() 
     return data
+def workallocation(request):
+    n=""
+    name=""
+    if(request.POST):
+        today=datetime.datetime.now()
+        work=request.POST.get("work")
+        estimatedkm=request.POST.get("estimatedkm")
+        estimateddays=request.POST.get("estimateddays")
+        wrkload=request.POST.get("wrkload")
+        name=request.POST.get("name")
+        n="insert into tbl_work(did,work,wdate,estimatedkm,estimateddays,wrkload,status) values('"+str(name)+"','"+str(work)+"','"+str(today)+"','"+str(estimatedkm)+"','"+str(estimateddays)+"','"+str(wrkload)+"','Alloted')"
+        c.execute(n)
+        db.commit()
+    name=selectdriver()
+    return render(request,"allocation.html",{"n":n,"name":name})
+def reqvehchr(request):
+    c.execute("select tbl_vehicle.vehid,tbl_vehicle.vehiclename,tbl_vehicle.regno,tbl_category.catname from tbl_vehicle,tbl_category where tbl_vehicle.catid=tbl_category.catid")
+    j=c.fetchall() 
+    print(j)
+    return render(request,"requestvehiclehr.html",{"j":j})
+
+
 
 
 
