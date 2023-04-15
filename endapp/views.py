@@ -138,6 +138,33 @@ def addamount(request):
     vehiclename=selectvehicle()       
     return render(request,"addamount.html",{"n":n,"vehiclename":vehiclename})
 
+def selectvehicle():
+    c.execute("select * from tbl_vehicle")
+    data=c.fetchall() 
+    return data
+def selectamount():
+    c.execute("select * from tbl_vehicle")
+    data=c.fetchall() 
+    return data
+def servicedetails(request):
+    n=""
+    if(request.POST):
+        today=datetime.datetime.now()
+        vehiclename=request.POST.get("vehiclename")
+        regno=request.POST.get("regno")
+        n="select count(*) as count from tbl_service where regno='"+str(regno)+"'"
+        c.execute(n)
+        i=c.fetchone()
+        if(i[0]==0):
+            n="insert into tbl_service(regno,servicedate) values('"+str(regno)+"','"+str(today)+"')"
+            c.execute(n)
+            db.commit()
+    vehiclename=selectvehicle()
+    regno=selectamount()
+    return render(request,"service.html",{"n":n,"vehiclename":vehiclename,"regno":regno})
+
+
+
 
 
      
