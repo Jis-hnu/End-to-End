@@ -26,6 +26,15 @@ def login(request):
             c.execute(s)
             y=c.fetchone()
             request.session['id']=y[0]
+            
+            if y[1]=='Admin':
+                return HttpResponseRedirect("/adminhome")
+            elif y[1]=='HR':
+                return HttpResponseRedirect("/hrhome")
+            elif y[1]=='DRIVER':
+                return HttpResponseRedirect("/driverhome")
+            
+     
                   
 
   
