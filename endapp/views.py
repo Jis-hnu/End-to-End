@@ -274,7 +274,40 @@ def viewwork(request):
     j=c.fetchall() 
     print(j)
     return render(request,"viewwork.html",{"j":j})
+def workcompleted(request):
+    sid=request.session['id']
+    id=request.GET.get("id")
+    s="update tbl_work set status='completed' where did='"+str(sid)+"'"
+    c.execute(s)
+    db.commit()
+    return HttpResponseRedirect("/viewwork")
+def viewinsuranceexpiry (request):
+    c.execute("SELECT tbl_insurance.`exdate`,tbl_vehicle.`vehiclename`,tbl_vehicle.`regno` FROM tbl_vehicle,tbl_insurance WHERE tbl_vehicle.`vehid`=tbl_insurance.`regno` ")
+    j=c.fetchall() 
+    print(j)
+    return render(request,"viewinsuex.html",{"j":j})
+def feedback(request):
+    n=""
+    if(request.POST):
 
+        feedback=request.POST.get("feedback")
+        name=request.POST.get("name")
+        n="insert into tbl_feedback(drivername,feedback) values('"+str(name)+"','"+str(feedback)+"')"
+        c.execute(n)
+        db.commit()
+    name=selectdriver()
+    return render(request,"feedback.html",{"n":n,"name":name})
+def viewfeedback(request):
+   
+    c.execute("SELECT * FROM tbl_feedback")
+    j=c.fetchall() 
+    print(j)
+    return render(request,"viewfeedback.html",{"j":j})
+def selectpaymentdriv(seid):
+   
+    c.execute("select login.username, tbl_vehicle.vehiclename, tbl_vehicle.regno,tbl_amount.amount,tbl_category.catname,login.id from login, tbl_vehicle, tbl_category,tbl_amount,tbl_driver_request where tbl_driver_request.drid = login.id and tbl_vehicle.vehid = tbl_driver_request.vehid and  tbl_vehicle.catid = tbl_category.catid and tbl_driver_request.status='1' and tbl_driver_request.drid='"+str(seid)+"'")
+    data=c.fetchall() 
+    return data
 
 
 
