@@ -308,7 +308,54 @@ def selectpaymentdriv(seid):
     c.execute("select login.username, tbl_vehicle.vehiclename, tbl_vehicle.regno,tbl_amount.amount,tbl_category.catname,login.id from login, tbl_vehicle, tbl_category,tbl_amount,tbl_driver_request where tbl_driver_request.drid = login.id and tbl_vehicle.vehid = tbl_driver_request.vehid and  tbl_vehicle.catid = tbl_category.catid and tbl_driver_request.status='1' and tbl_driver_request.drid='"+str(seid)+"'")
     data=c.fetchall() 
     return data
+def dpayment(request):
+    seid=request.session['id']
+    selectpay=selectpaymentdriv(seid)
+    if(request.POST):
 
+
+        
+        selectpay=""
+        tdate=datetime.datetime.now()
+        tamnt=request.POST.get("tamnt")
+        tday=request.POST.get("dayz")
+        ds=int(tamnt)*int(tday)
+    
+ 
+        s="select count(*) count from tbl_driver_request where drid='"+str(seid)+"'"
+
+        c.execute(s)
+        i=c.fetchone()
+        if(i[0]>0):
+
+            c.execute("insert into tbl_payment(driverid,paydate,status,tamnt) values('"+str(seid)+"','"+str(tdate)+"','Payed','"+str(ds)+"')")
+            db.commit()
+            return HttpResponseRedirect("/card")
+
+    return render(request,"dpayment.html",{"selectpaymentdriv":selectpay})
+    
+def viewpayment(request):
+    c.execute("select  distinct reg.name,pay.paydate from tbl_driverreg  reg join login  log join tbl_payment pay on log.id=pay.driverid where pay.status='Payed' and log.username=reg.email") 
+   
+    j=c.fetchall() 
+    print(j)
+    return render(request,"viewpayment.html",{"j":j})
+def card(request):
+    c.execute("select tamnt from tbl_payment where id in (select max(id) from tbl_payment)")
+    j=c.fetchall()
+    
+    if(request.POST):
+        cnum=request.POST.get("cnum")
+        exdate=request.POST.get("exdate")
+        cvv=request.POST.get("cvv")
+        
+       
+        s="insert into tbl_card(cnum,exdate,cvv) values('"+str(cnum)+"','"+str(exdate)+"','"+str(cvv)+"')"
+        c.execute(s)
+       
+        db.commit()
+        
+    return render(request,"card/index.html",{"j":j})
 
 
 
